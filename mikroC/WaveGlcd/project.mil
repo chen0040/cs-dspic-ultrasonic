@@ -1,0 +1,64 @@
+_main:
+  begin   (midx: 0)
+//project.c,36 :: 		void main() {
+_main:
+  begin   (midx: 0)
+//project.c,37 :: 		Glcd_Init();
+	W10 <2> <- PUSH(W10)   (midx: 0)
+	W11 <2> <- PUSH(W11)   (midx: 0)
+	W12 <2> <- PUSH(W12)   (midx: 0)
+	CALL _Glcd_Init   (midx: 0)
+//project.c,39 :: 		while(1)
+0:   (midx: 0)
+//project.c,41 :: 		Glcd_Fill(0x00);
+	W10 <1> <- 0   (midx: 0)
+	CALL _Glcd_Fill   (midx: 0)
+//project.c,42 :: 		x=0;
+	W0 <4> <- 0.000000E+000   (midx: 0)
+	_x <4> <- W0   (midx: 0)
+//project.c,43 :: 		while(x < 127)
+2:   (midx: 0)
+	W0 <1> <-  _x < 1.270000E+002   (midx: 7)
+	if (!W0) then goto 3   (midx: 0)
+//project.c,45 :: 		x1=x * 3.14 / 127.0;
+	W0 <4> <-  _x * 3.140000E+000   (midx: 7)
+	W0 <4> <-  W0 / 1.270000E+002   (midx: 7)
+	_x1 <4> <- W0   (midx: 0)
+//project.c,46 :: 		y=30 + 30* x1;
+	W0 <4> <-  3.000000E+001 * W0   (midx: 7)
+	W2 <4> <- 3.000000E+001   (midx: 0)
+	W0 <4> <-  W2 + W0   (midx: 7)
+	_y <4> <- W0   (midx: 0)
+//project.c,47 :: 		x+=dx;
+	W2 <4> <- _x   (midx: 0)
+	W0 <4> <- _dx   (midx: 0)
+	W0 <4> <-  W2 + W0   (midx: 7)
+	_x <4> <- W0   (midx: 0)
+//project.c,48 :: 		Delay_ms(100);
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 2)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 5)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 5)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+//project.c,49 :: 		Glcd_Dot(x, y, 1);
+	W0 <1> <- (type cast)_y   (midx: 0)
+	FLOC_main+0 <1> <- W0   (midx: 0)
+	W0 <1> <- (type cast)_x   (midx: 0)
+	W12 <1> <- 1   (midx: 0)
+	W1 <1> <- FLOC_main+0   (midx: 0)
+	W11 <1> <- W1   (midx: 0)
+	W10 <1> <- W0   (midx: 0)
+	CALL _Glcd_Dot   (midx: 0)
+//project.c,50 :: 		}
+	goto	2   (midx: 0)
+3:   (midx: 0)
+//project.c,51 :: 		}
+	goto	0   (midx: 0)
+  end
+   (midx: 0)

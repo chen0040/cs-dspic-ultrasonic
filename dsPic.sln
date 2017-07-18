@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dsPic", "dsPic\dsPic.csproj", "{DB008939-8F44-44A5-8A34-167ACA6D6240}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dsPicDesktop", "dsPicDesktop\dsPicDesktop.csproj", "{BBE6A209-11C3-401C-9DCD-0856C68E7D69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wmi", "Wmi\Wmi.csproj", "{248176C6-BF9F-47AC-8FA9-B5510DE18BEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmiConsole", "WmiConsole\WmiConsole.csproj", "{F71D072D-1B54-4957-9990-076701AF1BDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZedGraph", "zedgraph_v5.0.9\source\ZedGraph.csproj", "{2541686B-1673-43BF-AF89-3163945DB009}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB008939-8F44-44A5-8A34-167ACA6D6240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB008939-8F44-44A5-8A34-167ACA6D6240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB008939-8F44-44A5-8A34-167ACA6D6240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB008939-8F44-44A5-8A34-167ACA6D6240}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBE6A209-11C3-401C-9DCD-0856C68E7D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBE6A209-11C3-401C-9DCD-0856C68E7D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBE6A209-11C3-401C-9DCD-0856C68E7D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBE6A209-11C3-401C-9DCD-0856C68E7D69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{248176C6-BF9F-47AC-8FA9-B5510DE18BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{248176C6-BF9F-47AC-8FA9-B5510DE18BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{248176C6-BF9F-47AC-8FA9-B5510DE18BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{248176C6-BF9F-47AC-8FA9-B5510DE18BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F71D072D-1B54-4957-9990-076701AF1BDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F71D072D-1B54-4957-9990-076701AF1BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F71D072D-1B54-4957-9990-076701AF1BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F71D072D-1B54-4957-9990-076701AF1BDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2541686B-1673-43BF-AF89-3163945DB009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2541686B-1673-43BF-AF89-3163945DB009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2541686B-1673-43BF-AF89-3163945DB009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2541686B-1673-43BF-AF89-3163945DB009}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

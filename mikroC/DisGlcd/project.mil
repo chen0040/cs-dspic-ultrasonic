@@ -1,0 +1,375 @@
+_Timer1Int:
+  begin   (midx: 0)
+//project.c,78 :: 		void Timer1Int() iv IVT_ADDR_T1INTERRUPT {      // Timer interrupt, sample with 40kHz
+_Timer1Int:
+  begin   (midx: 0)
+//project.c,79 :: 		LATC = ~PORTC;                                // invert PortC for generating signal
+	W1 <2> <- addr(LATC)   (midx: 0)
+	W0 <2> <- PORTC   (midx: 0)
+	[W1] <2> <- ~W0   (midx: 1)
+//project.c,80 :: 		IFS0.T1IF = 0;                                // clear interrupt flag
+	IFS0 <0> <- 0   (midx: 17)
+  end
+   (midx: 0)
+_InitPort:
+  begin   (midx: 0)
+//project.c,83 :: 		void InitPort(void) {                           // function for initialization of I/O PORTS
+_InitPort:
+  begin   (midx: 0)
+//project.c,84 :: 		ADPCFG = 0xFEFF;                              // Configure AN pins as digital except PinB8
+	W0 <2> <- 65279   (midx: 0)
+	ADPCFG <2> <- W0   (midx: 0)
+//project.c,85 :: 		TRISC = 0x0000;                               // set PORTC as output
+	TRISC <2> <- 0   (midx: 0)
+//project.c,86 :: 		PORTC = 0x2000;                               // default value of PORTC
+	W0 <2> <- 8192   (midx: 0)
+	PORTC <2> <- W0   (midx: 0)
+//project.c,87 :: 		TRISB.B8 = 1;                                 // set PinB8 as input
+	TRISB <0> <- 1   (midx: 17)
+  end
+   (midx: 0)
+_InitTimer:
+  begin   (midx: 0)
+//project.c,90 :: 		void InitTimer(void) {                          // Initialization of Timer1
+_InitTimer:
+  begin   (midx: 0)
+//project.c,91 :: 		T1CON.B5 = 0;                                 // prescaler 1:1
+	T1CON <0> <- 0   (midx: 17)
+//project.c,92 :: 		T1CON.B4 = 0;
+	T1CON <0> <- 0   (midx: 17)
+//project.c,93 :: 		PR1 = (unsigned long)(Get_Fosc_kHz()) * 1000 / (8 * SAMPLE_FREQ);
+	CALL _Get_Fosc_kHz   (midx: 0)
+	W0 <4> <-  W0 * 1000   (midx: 2)
+	W0 <4> <-  W0 / 320000   (midx: 2)
+	PR1 <2> <- W0   (midx: 0)
+//project.c,94 :: 		TON_bit = 1;                                  // start Timer1
+	TON_bit <0> <- 1   (midx: 0)
+  end
+   (midx: 0)
+_InitDelay:
+  begin   (midx: 0)
+//project.c,97 :: 		void InitDelay(void) {                          // Initialization of Timer2
+_InitDelay:
+  begin   (midx: 0)
+//project.c,98 :: 		T2CON.B5 = 0;                                 // prescaler 1:8
+	T2CON <0> <- 0   (midx: 17)
+//project.c,99 :: 		T2CON.B4 = 1;
+	T2CON <0> <- 1   (midx: 17)
+//project.c,100 :: 		TMR2 = 0x0000;                                // Initial value of TMR2 register
+	TMR2 <2> <- 0   (midx: 0)
+//project.c,101 :: 		T2CON.TON = 1;                                // start Timer2
+	T2CON <0> <- 1   (midx: 17)
+  end
+   (midx: 0)
+_InitADC:
+  begin   (midx: 0)
+//project.c,104 :: 		void InitADC(void) {                            // Initialization of ADC module
+_InitADC:
+  begin   (midx: 0)
+//project.c,105 :: 		ADC1_Init();
+	CALL _ADC1_Init   (midx: 0)
+  end
+   (midx: 0)
+_InitVariable:
+  begin   (midx: 0)
+//project.c,108 :: 		void InitVariable(void) {                       // setting initial values
+_InitVariable:
+  begin   (midx: 0)
+//project.c,109 :: 		abc = 0;
+	W0 <2> <- 0   (midx: 0)
+	_abc <2> <- W0   (midx: 0)
+//project.c,110 :: 		temp_old = 0;
+	W0 <2> <- 0   (midx: 0)
+	_temp_old <2> <- W0   (midx: 0)
+//project.c,111 :: 		distance = 0;
+	W0 <2> <- 0   (midx: 0)
+	_distance <2> <- W0   (midx: 0)
+  end
+   (midx: 0)
+_InitGLCD:
+  begin   (midx: 0)
+//project.c,114 :: 		void InitGLCD(void) {                           // Initialization of UART1
+_InitGLCD:
+  begin   (midx: 0)
+//project.c,115 :: 		Glcd_Init();
+	CALL _Glcd_Init   (midx: 0)
+  end
+   (midx: 0)
+_main:
+  begin   (midx: 0)
+//project.c,120 :: 		void main() {                                   // Main Program
+_main:
+  begin   (midx: 0)
+//project.c,122 :: 		InitPort();                                   // Initialization
+	W10 <2> <- PUSH(W10)   (midx: 0)
+	W11 <2> <- PUSH(W11)   (midx: 0)
+	W12 <2> <- PUSH(W12)   (midx: 0)
+	W13 <2> <- PUSH(W13)   (midx: 0)
+	CALL _InitPort   (midx: 0)
+//project.c,123 :: 		InitTimer();
+	CALL _InitTimer   (midx: 0)
+//project.c,124 :: 		InitADC();
+	CALL _InitADC   (midx: 0)
+//project.c,125 :: 		InitGLCD();
+	CALL _InitGLCD   (midx: 0)
+//project.c,127 :: 		while(1) {                                    // Unending loop
+0:   (midx: 0)
+//project.c,130 :: 		IEC0.T1IE = 1;                            // enable T1 interrupt
+	IEC0 <0> <- 1   (midx: 17)
+//project.c,131 :: 		Delay_us(100);                            // Software PWM lasts 300us
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 2)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 5)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+//project.c,132 :: 		IEC0.T1IE = 0;                            // disable T1 interrupt
+	IEC0 <0> <- 0   (midx: 17)
+//project.c,135 :: 		Delay_ms(1);                              // wait 1ms so piezzo sattles down
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 2)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 5)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+//project.c,137 :: 		InitDelay();                              // Start/initialize Timer2 to count Delay
+	CALL _InitDelay   (midx: 0)
+//project.c,139 :: 		temp = ADC1_Get_Sample(8);                // get first two samples
+	W10 <2> <- 8   (midx: 0)
+	CALL _ADC1_Get_Sample   (midx: 0)
+	_temp <2> <- W0   (midx: 0)
+//project.c,140 :: 		Delay_us(1);
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+//project.c,141 :: 		temp_sec = ADC1_Get_Sample(8);
+	W10 <2> <- 8   (midx: 0)
+	CALL _ADC1_Get_Sample   (midx: 0)
+	_temp_sec <2> <- W0   (midx: 0)
+//project.c,143 :: 		InitVariable();                           // Initialization of Variables
+	CALL _InitVariable   (midx: 0)
+//project.c,145 :: 		while (temp > temp_sec) {                 // check if returned wave is uprising
+4:   (midx: 0)
+	W1 <2> <- _temp   (midx: 0)
+	W0 <2> <- addr(_temp_sec)   (midx: 0)
+	if ( W1 <= [W0]) then goto 5   (midx: 1)
+//project.c,146 :: 		Delay_us(10);                           //   if not check again in 10us
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 2)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 5)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+//project.c,147 :: 		temp = ADC1_Get_Sample(8);
+	W10 <2> <- 8   (midx: 0)
+	CALL _ADC1_Get_Sample   (midx: 0)
+	_temp <2> <- W0   (midx: 0)
+//project.c,148 :: 		Delay_us(1);
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+//project.c,149 :: 		temp_sec = ADC1_Get_Sample(8);
+	W10 <2> <- 8   (midx: 0)
+	CALL _ADC1_Get_Sample   (midx: 0)
+	_temp_sec <2> <- W0   (midx: 0)
+//project.c,150 :: 		}
+	goto	4   (midx: 0)
+5:   (midx: 0)
+//project.c,152 :: 		while(abc < 1000) {                       // Measure in lenght of 250ms
+7:   (midx: 0)
+	W1 <2> <- _abc   (midx: 0)
+	W0 <2> <- 1000   (midx: 0)
+	if ( W1 >= W0) then goto 8   (midx: 4)
+//project.c,153 :: 		temp = ADC1_Get_Sample(8);              // get sample
+	W10 <2> <- 8   (midx: 0)
+	CALL _ADC1_Get_Sample   (midx: 0)
+	_temp <2> <- W0   (midx: 0)
+//project.c,154 :: 		if (temp > temp_old) {                  // if new value is bigger then old
+	W1 <2> <- addr(_temp_old)   (midx: 0)
+	if ( W0 <= [W1]) then goto 9   (midx: 1)
+//project.c,155 :: 		temp_old = temp;                      //   set value of ADC into temporary variable
+	W0 <2> <- _temp   (midx: 0)
+	_temp_old <2> <- W0   (midx: 0)
+//project.c,156 :: 		time = TMR2;                          //   remember time when value was measured
+	W0 <2> <- TMR2   (midx: 0)
+	_time <2> <- W0   (midx: 0)
+//project.c,157 :: 		}
+9:   (midx: 0)
+//project.c,158 :: 		abc++;
+	W1 <2> <- 1   (midx: 0)
+	W0 <2> <- addr(_abc)   (midx: 0)
+	[W0] <2> <-  [W0] + W1   (midx: 1)
+//project.c,159 :: 		Delay_us(50);
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 2)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 5)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+//project.c,160 :: 		}
+	goto	7   (midx: 0)
+8:   (midx: 0)
+//project.c,161 :: 		T2CON.TON = 0;                            // Stop Timer2
+	T2CON <0> <- 0   (midx: 17)
+//project.c,163 :: 		if (time < 0)                             // absolute value of time
+	W0 <2> <- _time   (midx: 0)
+	if ( W0 >= 0) then goto 11   (midx: 1)
+//project.c,164 :: 		time = - time;
+	W1 <2> <- _time   (midx: 0)
+	W0 <2> <- addr(_time)   (midx: 0)
+	[W0] <2> <-  0 - W1   (midx: 1)
+11:   (midx: 0)
+//project.c,167 :: 		if (time < 600)
+	W1 <2> <- _time   (midx: 0)
+	W0 <2> <- 600   (midx: 0)
+	if ( W1 >= W0) then goto 12   (midx: 1)
+//project.c,168 :: 		distance = time / 40;                   //  40
+	W2 <2> <- 40   (midx: 0)
+	W0 <2> <- _time   (midx: 0)
+	W0 <2> <-  W0 / W2   (midx: 1)
+	_distance <2> <- W0   (midx: 0)
+	goto	13   (midx: 0)
+12:   (midx: 0)
+//project.c,169 :: 		else if ((time > 599) && (time < 1200))
+	W1 <2> <- _time   (midx: 0)
+	W0 <2> <- 599   (midx: 0)
+	if ( W1 <= W0) then goto 43   (midx: 1)
+	W1 <2> <- _time   (midx: 0)
+	W0 <2> <- 1200   (midx: 0)
+	if ( W1 >= W0) then goto 42   (midx: 1)
+41:   (midx: 0)
+//project.c,170 :: 		distance = time / 60;                   //  60
+	W2 <2> <- 60   (midx: 0)
+	W0 <2> <- _time   (midx: 0)
+	W0 <2> <-  W0 / W2   (midx: 1)
+	_distance <2> <- W0   (midx: 0)
+	goto	17   (midx: 0)
+//project.c,169 :: 		else if ((time > 599) && (time < 1200))
+43:   (midx: 0)
+42:   (midx: 0)
+//project.c,171 :: 		else if ((time > 1199) && (time < 2800))
+	W1 <2> <- _time   (midx: 0)
+	W0 <2> <- 1199   (midx: 0)
+	if ( W1 <= W0) then goto 45   (midx: 1)
+	W1 <2> <- _time   (midx: 0)
+	W0 <2> <- 2800   (midx: 0)
+	if ( W1 >= W0) then goto 44   (midx: 1)
+40:   (midx: 0)
+//project.c,172 :: 		distance = time / 90;                   //  90
+	W2 <2> <- 90   (midx: 0)
+	W0 <2> <- _time   (midx: 0)
+	W0 <2> <-  W0 / W2   (midx: 1)
+	_distance <2> <- W0   (midx: 0)
+	goto	21   (midx: 0)
+//project.c,171 :: 		else if ((time > 1199) && (time < 2800))
+45:   (midx: 0)
+44:   (midx: 0)
+//project.c,173 :: 		else if ((time > 2799) && (time < 7200))
+	W1 <2> <- _time   (midx: 0)
+	W0 <2> <- 2799   (midx: 0)
+	if ( W1 <= W0) then goto 47   (midx: 1)
+	W1 <2> <- _time   (midx: 0)
+	W0 <2> <- 7200   (midx: 0)
+	if ( W1 >= W0) then goto 46   (midx: 1)
+39:   (midx: 0)
+//project.c,174 :: 		distance = time / 110;                  // 110
+	W2 <2> <- 110   (midx: 0)
+	W0 <2> <- _time   (midx: 0)
+	W0 <2> <-  W0 / W2   (midx: 1)
+	_distance <2> <- W0   (midx: 0)
+	goto	25   (midx: 0)
+//project.c,173 :: 		else if ((time > 2799) && (time < 7200))
+47:   (midx: 0)
+46:   (midx: 0)
+//project.c,175 :: 		else if ((time > 7199) && (time < 20000))
+	W1 <2> <- _time   (midx: 0)
+	W0 <2> <- 7199   (midx: 0)
+	if ( W1 <= W0) then goto 49   (midx: 1)
+	W1 <2> <- _time   (midx: 0)
+	W0 <2> <- 20000   (midx: 0)
+	if ( W1 >= W0) then goto 48   (midx: 1)
+38:   (midx: 0)
+//project.c,176 :: 		distance = time / 125;                  // 125
+	W2 <2> <- 125   (midx: 0)
+	W0 <2> <- _time   (midx: 0)
+	W0 <2> <-  W0 / W2   (midx: 1)
+	_distance <2> <- W0   (midx: 0)
+	goto	29   (midx: 0)
+//project.c,175 :: 		else if ((time > 7199) && (time < 20000))
+49:   (midx: 0)
+48:   (midx: 0)
+//project.c,177 :: 		else if ((time > 19999) && (time < 35000))
+	W1 <2> <- _time   (midx: 0)
+	W0 <2> <- 19999   (midx: 0)
+	if ( W1 <= W0) then goto 51   (midx: 1)
+	W1 <2> <- _time   (midx: 0)
+	W0 <2> <- 35000   (midx: 0)
+	if ( W1 >= W0) then goto 50   (midx: 1)
+37:   (midx: 0)
+//project.c,178 :: 		distance = time / 135;                  // 135
+	W2 <2> <- 135   (midx: 0)
+	W0 <2> <- _time   (midx: 0)
+	W0 <2> <-  W0 / W2   (midx: 1)
+	_distance <2> <- W0   (midx: 0)
+	goto	33   (midx: 0)
+//project.c,177 :: 		else if ((time > 19999) && (time < 35000))
+51:   (midx: 0)
+50:   (midx: 0)
+//project.c,180 :: 		distance = 0;
+	W0 <2> <- 0   (midx: 0)
+	_distance <2> <- W0   (midx: 0)
+33:   (midx: 0)
+29:   (midx: 0)
+25:   (midx: 0)
+21:   (midx: 0)
+17:   (midx: 0)
+13:   (midx: 0)
+//project.c,182 :: 		if (distance == 0) {                      // if distance is 0 the object is too far
+	W0 <2> <- _distance   (midx: 0)
+	if ( W0 != 0) then goto 34   (midx: 1)
+//project.c,183 :: 		GLcd_Write_Text("Too Far!", 10, 0, 1);
+	?lstr1_project <-initialize(0)   (midx: 0)
+	W0 <2> <- addr(?lstr1_project)   (midx: 0)
+	W13 <1> <- 1   (midx: 0)
+	W12 <1> <- 0   (midx: 0)
+	W11 <1> <- 10   (midx: 0)
+	W10 <2> <- W0   (midx: 0)
+	CALL _Glcd_Write_Text   (midx: 0)
+//project.c,185 :: 		}
+	goto	35   (midx: 0)
+34:   (midx: 0)
+//project.c,187 :: 		IntToStr(distance, txt);                // converts time into string
+	W11 <2> <- #_txt   (midx: 0)
+	W10 <2> <- _distance   (midx: 0)
+	CALL _IntToStr   (midx: 0)
+//project.c,188 :: 		GLcd_Write_Text(txt, 10, 0, 1);
+	W13 <1> <- 1   (midx: 0)
+	W12 <1> <- 0   (midx: 0)
+	W11 <1> <- 10   (midx: 0)
+	W10 <2> <- #_txt   (midx: 0)
+	CALL _Glcd_Write_Text   (midx: 0)
+//project.c,190 :: 		GLcd_Write_Text (" cm", 100, 0, 1);               // send value over UART
+	?lstr2_project <-initialize(0)   (midx: 0)
+	W0 <2> <- addr(?lstr2_project)   (midx: 0)
+	W13 <1> <- 1   (midx: 0)
+	W12 <1> <- 0   (midx: 0)
+	W11 <1> <- 100   (midx: 0)
+	W10 <2> <- W0   (midx: 0)
+	CALL _Glcd_Write_Text   (midx: 0)
+//project.c,191 :: 		}
+35:   (midx: 0)
+//project.c,193 :: 		Delay_ms(500);                              // delay before next measure
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 2)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 5)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 5)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+//project.c,194 :: 		}
+	goto	0   (midx: 0)
+  end
+   (midx: 0)

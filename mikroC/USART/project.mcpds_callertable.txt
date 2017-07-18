@@ -1,0 +1,11 @@
+main
+	Soft_UART_Init
+		Get_Fosc_kHz
+		Get_Fosc_Per_Cyc
+		_Multiply_32x32
+		_Divide_32x32
+		_Modulus_32x32
+	Soft_UART_Write
+		Delay_Cyc_Long
+	Soft_UART_Read
+		Delay_Cyc_Long

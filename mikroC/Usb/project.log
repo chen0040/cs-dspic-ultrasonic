@@ -1,0 +1,28 @@
+0	1	mikroCdsPIC.exe -MSF -DBG -pP30F6014A -Y -DL -SSA -O11111114 -fo10 -N"D:\dsPIC\dsPic\mikroC\Usb\project.mcpds" -SP"C:\Program Files\Mikroelektronika\mikroC PRO for dsPIC\defs\" -SP"C:\Program Files\Mikroelektronika\mikroC PRO for dsPIC\uses\" -SP"D:\dsPIC\dsPic\mikroC\Usb\" "project.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CType.mcl" "__Lib_CString.mcl" "__Lib_CStdlib.mcl" "__Lib_CMath.mcl" "__Lib_Setjmp.mcl" "__Lib_Conversions.mcl" "__Lib_Sprintf.mcl" "__Lib_PrintOut.mcl" "__Lib_Sprinti.mcl" "__Lib_Sprintl.mcl" "__Lib_Time.mcl" "__Lib_Trigonometry.mcl" "__Lib_Button.mcl" "__Lib_Keypad4x4.mcl" "__Lib_Manchester.mcl" "__Lib_OneWire.mcl" "__Lib_PS2.mcl" "__Lib_Sound.mcl" "__Lib_SoftI2C.mcl" "__Lib_SoftSPI.mcl" "__Lib_SoftUART.mcl" "__Lib_ADC_1_p24FJ_p30.mcl" "__Lib_EEPROM_p30.mcl" "__Lib_FLASH_p30.mcl" "__Lib_I2C_1_p30.mcl" "__Lib_PWM_1.mcl" "__Lib_SPI_12.mcl" "__Lib_UART_12_p30.mcl" "__Lib_CAN_12.mcl" "__Lib_PortExpander.mcl" "__Lib_CANSPI.mcl" "__Lib_CF.mcl" "__Lib_CFFat16.mcl" "__Lib_GlcdFonts.mcl" "__Lib_Glcd.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl" "__Lib_Mmc.mcl" "__Lib_MmcFat16.mcl" "__Lib_RS485.mcl" "__Lib_T6963C.mcl" "__Lib_SPIGlcd.mcl" "__Lib_SPILcd.mcl" "__Lib_SPILcd8.mcl" "__Lib_SPIT6963C.mcl" "__Lib_EthEnc28j60.mcl" "__Lib_EthEnc24j600.mcl" "__Lib_TouchPanel.mcl" "__Lib_BitReverseComplex.mcl" "__Lib_FFT.mcl" "__Lib_FirRadix.mcl" "__Lib_IirRadix.mcl" "__Lib_Matrices.mcl" "__Lib_TwiddleFactors.mcl" "__Lib_Vectors.mcl"	 
+diagnostics: 0	121	Loading...	 
+diagnostics: 0	126	All files Preprocessed in 16 ms	 
+diagnostics: 0	122	Compilation Started	usbdsc.c
+hint: 9	1354	Jumping out of asm block stops SSA optimization	project.c
+error: 9	324	Undeclared identifier '_Hid_InterruptProc' in expression	project.c
+error: 15	324	Undeclared identifier 'INTCON' in expression	project.c
+error: 17	324	Undeclared identifier 'INTCON3' in expression	project.c
+error: 18	317	Operator '.' is not applicable to these operands 'RCON'	project.c
+error: 19	324	Undeclared identifier 'PIE1' in expression	project.c
+error: 20	324	Undeclared identifier 'PIE2' in expression	project.c
+error: 21	324	Undeclared identifier 'PIR1' in expression	project.c
+error: 22	324	Undeclared identifier 'PIR2' in expression	project.c
+error: 28	324	Undeclared identifier 'TRISE' in expression	project.c
+error: 33	324	Undeclared identifier 'LATE' in expression	project.c
+error: 36	304	Instruction not recognized or operand(s) out of range: LFSR FSR0, 0x000	project.c
+error: 37	304	Instruction not recognized or operand(s) out of range: MOVLW 0x08	project.c
+error: 38	304	Instruction not recognized or operand(s) out of range: CLRF POSTINC0, 0	project.c
+error: 39	304	Instruction not recognized or operand(s) out of range: CPFSEQ FSR0H, 0	project.c
+error: 43	324	Undeclared identifier 'T0CON' in expression	project.c
+error: 44	324	Undeclared identifier 'TMR0H' in expression	project.c
+error: 45	324	Undeclared identifier 'TMR0L' in expression	project.c
+error: 46	324	Undeclared identifier 'INTCON' in expression	project.c
+error: 46	317	Operator '.' is not applicable to these operands ''	project.c
+error: 47	324	Undeclared identifier 'T0CON' in expression	project.c
+error: 47	317	Operator '.' is not applicable to these operands ''	project.c
+error: 48	312	Internal error ''	project.c
+error: 0	102	Finished (with errors): 30 Jan 2011, 16:10:02	project.mcpds

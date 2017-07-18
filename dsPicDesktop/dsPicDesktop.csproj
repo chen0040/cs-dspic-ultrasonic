@@ -1,0 +1,150 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BBE6A209-11C3-401C-9DCD-0856C68E7D69}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>dsPicDesktop</RootNamespace>
+    <AssemblyName>dsPicDesktop</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+    <ApplicationIcon>Resources\dsPic.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DistanceDataPoint.cs" />
+    <Compile Include="frmDistanceMeter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDistanceMeter.Designer.cs">
+      <DependentUpon>frmDistanceMeter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDistancePlot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDistancePlot.Designer.cs">
+      <DependentUpon>frmDistancePlot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDsPic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDsPic.Designer.cs">
+      <DependentUpon>frmDsPic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSerialPort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSerialPort.Designer.cs">
+      <DependentUpon>frmSerialPort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmDistanceMeter.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmDistanceMeter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDistancePlot.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmDistancePlot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDsPic.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmDsPic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSerialPort.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmSerialPort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dsPic\dsPic.csproj">
+      <Project>{DB008939-8F44-44A5-8A34-167ACA6D6240}</Project>
+      <Name>dsPic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\zedgraph_v5.0.9\source\ZedGraph.csproj">
+      <Project>{2541686B-1673-43BF-AF89-3163945DB009}</Project>
+      <Name>ZedGraph</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\serialport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dsPic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dsPic.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\distancemeter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\distanceplot.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

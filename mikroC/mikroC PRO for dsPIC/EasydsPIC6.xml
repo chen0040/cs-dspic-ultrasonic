@@ -1,0 +1,13 @@
+<EasydsPIC6>
+	<Attributes>
+		<Url></Url>
+		<Image>EasydsPICv6.jpg</Image>
+		<File></File>
+	</Attributes>
+	<Events>
+		<OnLeftClick>None</OnLeftClick>
+		<OnRightClick>None</OnRightClick>
+		<OnDblClick>None</OnDblClick>
+		<OnMouseOver>PreviewImage</OnMouseOver>
+	</Events>
+</EasydsPIC6>

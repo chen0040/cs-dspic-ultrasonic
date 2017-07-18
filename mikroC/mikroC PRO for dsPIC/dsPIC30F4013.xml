@@ -1,0 +1,13 @@
+<dsPIC30F4013>
+	<Attributes>
+		<Url></Url>
+		<Image>dsPIC30F4013.jpg</Image>
+		<File></File>
+	</Attributes>
+	<Events>
+		<OnLeftClick>None</OnLeftClick>
+		<OnRightClick>None</OnRightClick>
+		<OnDblClick>None</OnDblClick>
+		<OnMouseOver>PreviewImage</OnMouseOver>
+	</Events>
+</dsPIC30F4013>

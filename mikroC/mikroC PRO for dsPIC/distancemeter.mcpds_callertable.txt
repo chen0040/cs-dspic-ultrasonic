@@ -1,0 +1,27 @@
+main
+	InitPort
+	InitTimer
+		Get_Fosc_kHz
+		_Multiply_32x32
+		_Divide_32x32
+	InitADC
+		ADC1_Init
+	InitUART
+		UART1_Init
+			Get_Fosc_kHz
+			Delay_100ms
+			_Multiply_32x32
+			_Modulus_32x32
+			_Divide_32x32
+		UART1_Write_Text
+			UART1_Write
+		UART1_Write
+	InitDelay
+	ADC1_Get_Sample
+	InitVariable
+	UART1_Write_Text
+		UART1_Write
+	UART1_Write
+	IntToStr
+		WordToStr
+Timer1Int

@@ -1,0 +1,13 @@
+<Distance_Meter_2_Board>
+	<Attributes>
+		<Url></Url>
+		<Image>DistanceMeter2.jpg</Image>
+		<File></File>
+	</Attributes>
+	<Events>
+		<OnLeftClick>None</OnLeftClick>
+		<OnRightClick>None</OnRightClick>
+		<OnDblClick>None</OnDblClick>
+		<OnMouseOver>PreviewImage</OnMouseOver>
+	</Events>
+</Distance_Meter_2_Board>

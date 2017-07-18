@@ -1,0 +1,99 @@
+_main:
+  begin   (midx: 0)
+//project.c,27 :: 		void main(){
+_main:
+  begin   (midx: 0)
+//project.c,32 :: 		TRISB = 0;              // Set PORTB as output (error signalization)
+	W10 <2> <- PUSH(W10)   (midx: 0)
+	W11 <2> <- PUSH(W11)   (midx: 0)
+	W12 <2> <- PUSH(W12)   (midx: 0)
+	TRISB <2> <- 0   (midx: 0)
+//project.c,33 :: 		LATB = 0;
+	LATB <2> <- 0   (midx: 0)
+//project.c,35 :: 		error = Soft_UART_Init(&PORTF, 2, 3, 14400, 0); // Initialize Soft UART at 14400 bps
+	W12 <2> <- 3   (midx: 0)
+	W11 <2> <- 2   (midx: 0)
+	W10 <2> <- #PORTF   (midx: 0)
+	W0 <2> <- 0   (midx: 0)
+	FARG_Soft_UART_Init_inverted <2> <- PUSH(W0)   (midx: 0)
+	W0 <4> <- 14400   (midx: 0)
+	FARG_Soft_UART_Init_baud_rate <4> <- PUSH(W0)   (midx: 0)
+	CALL _Soft_UART_Init   (midx: 0)
+	W1 <2> <- addr(_error)   (midx: 0)
+	[W1] <1> <- W0   (midx: 0)
+//project.c,36 :: 		if (error > 0) {
+	if ( W0 <= 0) then goto 0   (midx: 0)
+//project.c,37 :: 		LATB = error;                                 // Signalize Init error
+	W0 <2> <- addr(_error)   (midx: 0)
+	W0 <2> <- [W0]   (midx: 0)
+	LATB <2> <- W0   (midx: 0)
+//project.c,38 :: 		while(1);                                     // Stop program
+1:   (midx: 0)
+	goto	1   (midx: 0)
+//project.c,39 :: 		}
+0:   (midx: 0)
+//project.c,40 :: 		Delay_ms(100);
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 2)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 5)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 5)
+	asm: -1   (midx: 1)
+//project.c,42 :: 		for (i = 'z'; i >= 'A'; i--) {                  // Send bytes from 'z' downto 'A'
+	W1 <2> <- addr(_i)   (midx: 0)
+	W0 <1> <- 122   (midx: 0)
+	[W1] <1> <- W0   (midx: 0)
+4:   (midx: 0)
+	W0 <2> <- addr(_i)   (midx: 0)
+	W1 <1> <- [W0]   (midx: 0)
+	W0 <1> <- 65   (midx: 0)
+	if ( W1 < W0) then goto 5   (midx: 0)
+//project.c,43 :: 		Soft_UART_Write(i);
+	W0 <2> <- addr(_i)   (midx: 0)
+	W10 <1> <- [W0]   (midx: 0)
+	CALL _Soft_UART_Write   (midx: 0)
+//project.c,44 :: 		Delay_ms(100);
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 2)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 5)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 1)
+	asm: -1   (midx: 5)
+	asm: -1   (midx: 1)
+//project.c,42 :: 		for (i = 'z'; i >= 'A'; i--) {                  // Send bytes from 'z' downto 'A'
+	W1 <1> <- 1   (midx: 0)
+	W0 <2> <- addr(_i)   (midx: 0)
+	[W0] <1> <-  [W0] - W1   (midx: 0)
+//project.c,45 :: 		}
+	goto	4   (midx: 0)
+5:   (midx: 0)
+//project.c,47 :: 		while(1) {                                      // Endless loop
+8:   (midx: 0)
+//project.c,48 :: 		byte_read = Soft_UART_Read(&error);           // Read byte, then test error flag
+	W10 <2> <- #_error   (midx: 0)
+	CALL _Soft_UART_Read   (midx: 0)
+	W1 <2> <- addr(_byte_read)   (midx: 0)
+	[W1] <1> <- W0   (midx: 0)
+//project.c,49 :: 		if (error)                                    // If error was detected
+	W0 <2> <- addr(_error)   (midx: 0)
+	if (![W0]) then goto 10   (midx: 0)
+//project.c,50 :: 		LATB = error;                               //   signal it on PORTB
+	W0 <2> <- addr(_error)   (midx: 0)
+	W0 <2> <- [W0]   (midx: 0)
+	LATB <2> <- W0   (midx: 0)
+	goto	11   (midx: 0)
+10:   (midx: 0)
+//project.c,52 :: 		Soft_UART_Write(byte_read);                 // If error was not detected, return byte read
+	W0 <2> <- addr(_byte_read)   (midx: 0)
+	W10 <1> <- [W0]   (midx: 0)
+	CALL _Soft_UART_Write   (midx: 0)
+11:   (midx: 0)
+//project.c,53 :: 		}
+	goto	8   (midx: 0)
+  end
+   (midx: 0)
